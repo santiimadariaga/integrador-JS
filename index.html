@@ -43,12 +43,71 @@
                                 id="userIcon">
                             <p class="none">Iniciar Sesión</p>
                         </a>
-                        <a href="" id="cart">
+                        <a id="cart">
                             <img src="./assets/img/cart-icon.png" alt="cart" id="cartIcon">
                             <p class="none">Carrito</p>
                         </a>
                     </div>
                 </ul>
+            </div>
+            <div id="cartMenu" class="close_cart">
+                <div class="container_X">
+                    <div class="content_close_cart" id="closeCart">
+                        <p>X</p>
+                    </div>
+                </div>
+                <h2>Productos</h2>
+                <div class="content_cart_products">
+                    <div class="cart_product">
+                        <div class="img_cart_product">
+                            <img src="./assets/imgData/kidNikoThree.png" alt="">
+                        </div>
+                        <div class="content_texts_cart">
+                            <h4>kidNikoThree</h4>
+                            <p>US$</p>
+                        </div>
+                        <div class="content_pls_min">
+                            <div class="plsMin">-</div>
+                            <div class="quantity">#</div>
+                            <div class="plsMin">+</div>
+                        </div>
+                    </div>
+                    <div class="cart_product">
+                        <div class="img_cart_product">
+                            <img src="./assets/imgData/kidAdidosThree.png" alt="">
+                        </div>
+                        <div class="content_texts_cart">
+                            <h4>Nombre</h4>
+                            <p>Precio</p>
+                        </div>
+                        <div class="content_pls_min">
+                            <div class="plsMin">-</div>
+                            <div class="quantity">#</div>
+                            <div class="plsMin">+</div>
+                        </div>
+                    </div>
+                    <div class="cart_product">
+                        <div class="img_cart_product">
+                            <img src="./assets/imgData/kidAdidosThree.png" alt="">
+                        </div>
+                        <div class="content_texts_cart">
+                            <h4>Nombre</h4>
+                            <p>Precio</p>
+                        </div>
+                        <div class="content_pls_min">
+                            <div class="plsMin">-</div>
+                            <div class="quantity">#</div>
+                            <div class="plsMin">+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content_total_price">
+                    <h2>Total:</h2>
+                    <p>$$$</p>
+                </div>
+                <div class="content_buy_btn">
+                    <button>Finalizar Compra</button>
+                </div>
             </div>
         </div>
 
@@ -76,8 +135,6 @@
                     <img src="./assets/img/arrow-down.png" alt="">
                 </a>
             </div>
-            <!-- <script>
-            </scrip> -->
 
         </section>
 
@@ -111,19 +168,17 @@
                 <div class="products_content">
                     <h2>BEST SELLER</h2>
                     <div class="cards_container">
+
                         <div class="container_card_product">
                             <div class="card_product">
+                                <div class="content_price">
+                                    <p>US$ 123</p>
+                                </div>
                                 <div class="content_img_product">
-                                    <img src="./assets/img/icon-title.png" alt="">
+                                    <img src="./assets/imgData/menAdidosOne.png" alt="">
                                 </div>
                                 <h3>NIKE MAMERTO 4.0</h3>
                                 <div class="numbers_container">
-                                    <div class="numbers_row">
-                                        <button class="number">38</button>
-                                        <button class="number">39</button>
-                                        <button class="number">40</button>
-                                        <button class="number">41</button>
-                                    </div>
                                     <div class="numbers_row">
                                         <button class="number">42</button>
                                         <button class="number">43</button>
@@ -133,59 +188,14 @@
                                 </div>
                             </div>
                             <div class="content_btn_add">
-                                <button class="close_add">AÑADIR AL CARRITO</button>
+                                <button id="addToCart" class="close_add">AÑADIR AL CARRITO</button>
+                            </div>
+
+                            <div class="container_addedToCart">
+                                <div id="addedToCart"></div>
                             </div>
                         </div>
-                        <div class="container_card_product">
-                            <div class="card_product">
-                                <div class="content_img_product">
-                                    <img src="./assets/img/icon-title.png" alt="">
-                                </div>
-                                <h3>NIKE MAMERTO 4.0</h3>
-                                <div class="numbers_container">
-                                    <div class="numbers_row">
-                                        <button class="number">38</button>
-                                        <button class="number">39</button>
-                                        <button class="number">40</button>
-                                        <button class="number">41</button>
-                                    </div>
-                                    <div class="numbers_row">
-                                        <button class="number">42</button>
-                                        <button class="number">43</button>
-                                        <button class="number">44</button>
-                                        <button class="number">45</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="content_btn_add">
-                                <button class="add_to_cart">AÑADIR AL CARRITO</button>
-                            </div>
-                        </div>
-                        <div class="container_card_product">
-                            <div class="card_product">
-                                <div class="content_img_product">
-                                    <img src="./assets/img/icon-title.png" alt="">
-                                </div>
-                                <h3>NIKE MAMERTO 4.0</h3>
-                                <div class="numbers_container">
-                                    <div class="numbers_row">
-                                        <button class="number">38</button>
-                                        <button class="number">39</button>
-                                        <button class="number">40</button>
-                                        <button class="number">41</button>
-                                    </div>
-                                    <div class="numbers_row">
-                                        <button class="number">42</button>
-                                        <button class="number">43</button>
-                                        <button class="number">44</button>
-                                        <button class="number">45</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="content_btn_add">
-                                <button class="close_add">AÑADIR AL CARRITO</button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -237,9 +247,9 @@
         </footer>
 
 
-
     </main>
     <script src="./assets/index.js"></script>
+    <script src="./assets/data.js"></script>
 </body>
 
 </html>

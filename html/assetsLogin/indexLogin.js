@@ -1,32 +1,11 @@
 const headerindex = document.querySelector("header");
-const menuBars = document.getElementById("bars");
-const menu = document.getElementById("menu");
-const overlay = document.getElementById("overlay");
-const homeIcon = document.getElementById("home");
 const input = document.querySelectorAll("input");
 const label = document.querySelector(".label_name");
+const showOrHidePass = document.getElementById("showOrHide");
+const btnSubmit = document.getElementById("btn");
 
 const changeColorHeader = () => {
   headerindex.classList.toggle("change_color", window.scrollY > 0);
-};
-
-const openMenu = () => {
-  if (menu.classList.contains("close_menu")) {
-    menu.classList.remove("close_menu");
-    menu.classList.add("open_menu");
-    overlay.classList.add("overlay");
-  } else if (!menu.classList.contains("close_menu")) {
-    menu.classList.remove("open_menu");
-    menu.classList.add("close_menu");
-    overlay.classList.remove("overlay");
-  }
-  return;
-};
-
-const closeOnClick = (e) => {
-  menu.classList.remove("open_menu");
-  menu.classList.add("close_menu");
-  overlay.classList.remove("overlay");
 };
 
 const auxInputClass = () => {
@@ -49,12 +28,31 @@ const auxInputClass = () => {
   }
 };
 
+const showOrHidePassword = (e) => {
+  if (input[1].value) {
+    if (e.target.classList.contains("show")) {
+      showOrHidePass.classList.remove("show");
+      showOrHidePass.classList.add("hidden");
+      input[1].type = "text";
+    } else if (e.target.classList.contains("hidden")) {
+      showOrHidePass.classList.remove("hidden");
+      showOrHidePass.classList.add("show");
+      input[1].type = "password";
+    }
+  }
+  return;
+};
+
+const prevent = (e) => {
+  e.preventDefault();
+};
+
 const init = () => {
   window.addEventListener("scroll", changeColorHeader);
-  menuBars.addEventListener("click", openMenu);
-  overlay.addEventListener("click", closeOnClick);
-  homeIcon.addEventListener("click", closeOnClick);
   window.addEventListener("click", auxInputClass);
+  window.addEventListener("DOMContentLoaded", auxInputClass);
+  showOrHidePass.addEventListener("click", showOrHidePassword);
+  btnSubmit.addEventListener("click", prevent);
 };
 
 init();

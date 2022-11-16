@@ -24,11 +24,6 @@
                 <img src="../assets/img/logo_size_1.png" alt="logo">
             </div>
             <div class="content_icons">
-                <div id="bars">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
                 <ul class="close_menu" id="menu">
                     <div class="content_icons_i">
                         <a href="../index.html" id="home"><img src="../assets/img/home-icon.png" alt="home"
@@ -44,8 +39,6 @@
 
     <main class="scroll">
 
-        <div id="overlay"></div>
-
         <section class="first_section" id="firstSection">
 
             <div class="container_login">
@@ -56,24 +49,34 @@
                             <img src="../assets/img/icon-title.png" alt="">
                         </div>
                     </div>
-                    <div class="container_login_content">
-                        <div class="content_inputs">
-                            <div class="box_input">
-                                <input class="inp" type="text" id="username">
-                                <label class="lbl" for="username">
-                                    <span class="label_name">Usuario</span>
-                                </label>
+                    <form class="container_login_content">
+                        <div class="container_inputs">
+                            <div class="content_input">
+                                <div class="box_input">
+                                    <input class="inp" type="text" id="username">
+                                    <label class="lbl" for="username">
+                                        <span class="label_name">Usuario</span>
+                                    </label>
+                                </div>
+                                <small></small>
                             </div>
-                            <div class="box_input">
-                                <input class="inp" type="password" id="password">
-                                <label class="lbl" for="password">
-                                    <span class="label_name">Contraseña</span>
-                                </label>
+                            <div class="content_input">
+                                <div class="box_input">
+                                    <input class="inp" type="password" id="password">
+                                    <label class="lbl" for="password">
+                                        <span class="label_name">Contraseña</span>
+                                    </label>
+                                    <img class="show" src="../assets/img/show-icon.png" alt="show" id="showOrHide">
+                                </div>
+                                <small></small>
                             </div>
                         </div>
-                        <button>Ingresar</button>
-                        <p>No tienes cuenta? Registrate.</p>
-                    </div>
+                        <div class="btn_content">
+                            <button type="submit" id="btn" class="btn_submit">Iniciar Sesión</button>
+                        </div>
+                        <p>No tienes cuenta? <a href="./register.html"><span class="register">Registrate.</span></a>
+                        </p>
+                    </form>
                 </div>
             </div>
 
@@ -125,10 +128,11 @@
             </div>
         </footer>
 
-
+        <div id="is_correct_login"></div>
 
     </main>
     <script src="./assetsLogin/indexLogin.js"></script>
+    <script src="./assetsLogin/validationLogin.js"></script>
 </body>
 
 </html>

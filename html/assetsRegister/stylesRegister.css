@@ -516,16 +516,17 @@ small {
   justify-content: center;
   align-items: center;
   color: white;
+  text-align: center;
   padding: 20px;
   border-radius: 0 15px;
   position: absolute;
   top: 33%;
   left: calc(100vw - 60%);
   width: 200px;
-  height: 30px;
+  height: auto;
   background-color: rgb(46, 128, 13);
   z-index: 2;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .incorrect_login {
@@ -538,11 +539,12 @@ small {
   top: 33%;
   left: calc(100vw - 60%);
   width: 200px;
-  height: 30px;
+  height: auto;
   background-color: rgb(128, 13, 13);
   color: white;
+  text-align: center;
   z-index: 2;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 /* MEDIA QUERYS */
@@ -552,33 +554,20 @@ small {
     padding-left: 15px;
     width: 60%;
   }
-
   .content_img_footer {
     width: 25%;
   }
-
   .content_social_footer {
     padding-left: 0;
   }
-
   .social {
     justify-content: flex-start;
   }
-
   .content_box_login {
     width: 70vw;
   }
-
   .container_login {
     padding-top: 20vw;
-  }
-
-  .correct_login {
-    left: calc(100vw - 68%);
-  }
-
-  .incorrect_login {
-    left: calc(100vw - 68%);
   }
 }
 
@@ -591,14 +580,6 @@ small {
 
   .content_info_footer {
     width: 100%;
-  }
-
-  .correct_login {
-    left: calc(100vw - 72%);
-  }
-
-  .incorrect_login {
-    left: calc(100vw - 72%);
   }
 }
 
@@ -625,14 +606,6 @@ small {
 
   .container_login {
     padding-top: 25vw;
-  }
-
-  .correct_login {
-    left: calc(100vw - 78%);
-  }
-
-  .incorrect_login {
-    left: calc(100vw - 78%);
   }
 }
 
