@@ -122,7 +122,9 @@
             <div class="hero_container">
                 <div class="hero_content">
                     <h1 class="title_hero">SANTO STORE</h1>
-                    <p class="sneakers_hero">sneakers as lifestyle</p>
+                    <div class="content_text_sneakersHero">
+                        <p class="sneakers_hero">sneakers as lifestyle</p>
+                    </div>
                 </div>
             </div>
 
@@ -141,22 +143,22 @@
         <section class="second_section" id="secondSection">
             <div class="filter_container">
                 <a class="filter_content" href="#thirdSection">
-                    <div class="filter">
-                        <img src="./assets/img/men-products.jpeg" alt="">
-                        <div class="content_text_filter">
-                            <p>CALZADO HOMBRES</p>
+                    <div class="filter" data-person="men">
+                        <img data-person="men" src="./assets/img/men-products.jpeg" alt="">
+                        <div data-person="men" class="content_text_filter">
+                            <p data-person="men">CALZADO HOMBRES</p>
                         </div>
                     </div>
-                    <div class="filter">
-                        <img src="./assets/img/kid-products.webp" alt="">
-                        <div class="content_text_filter">
-                            <p>CALZADO NIÑOS</p>
+                    <div class="filter" data-person="kid">
+                        <img data-person="kid" src="./assets/img/kid-products.webp" alt="">
+                        <div data-person="kid" class="content_text_filter">
+                            <p data-person="kid">CALZADO NIÑOS</p>
                         </div>
                     </div>
-                    <div class="filter">
-                        <img src="./assets/img/women-products.jpg" alt="">
-                        <div class="content_text_filter">
-                            <p>CALZADO MUJERES</p>
+                    <div class="filter" data-person="women">
+                        <img data-person="women" src="./assets/img/women-products.jpg" alt="">
+                        <div data-person="women" class="content_text_filter">
+                            <p data-person="women">CALZADO MUJERES</p>
                         </div>
                     </div>
                 </a>
@@ -166,10 +168,10 @@
         <section class="third_section" id="thirdSection">
             <div class="products_container">
                 <div class="products_content">
-                    <h2>BEST SELLER</h2>
+                    <h2 id="nameFilter">BEST SELLER</h2>
                     <div class="cards_container">
 
-                        <div class="container_card_product">
+                        <!-- <div class="container_card_product">
                             <div class="card_product">
                                 <div class="content_price">
                                     <p>US$ 123</p>
@@ -194,7 +196,7 @@
                             <div class="container_addedToCart">
                                 <div id="addedToCart"></div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>

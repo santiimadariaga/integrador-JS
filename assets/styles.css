@@ -257,7 +257,7 @@ header {
 .content_total_price {
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px 0;
+  padding: 10px 10px 15px;
 }
 
 .content_buy_btn {
@@ -338,43 +338,103 @@ header {
   line-height: 175px;
   font-weight: 400;
   letter-spacing: 2px;
-  animation: shake-bottom 2s ease-out 0.5s infinite both;
+  animation: bounce-top 2s 0.5s 1 both;
 }
 
-@keyframes shake-bottom {
-  0%,
+@keyframes bounce-top {
+  0% {
+    transform: translateY(-45px);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-24px);
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateY(-12px);
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(-6px);
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateY(-4px);
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+  }
   100% {
-    transform: rotate(0deg);
-    transform-origin: 50% 100%;
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+    opacity: 1;
   }
-  10% {
-    transform: rotate(2deg);
-  }
-  20%,
-  40%,
-  60% {
-    transform: rotate(-4deg);
-  }
-  30%,
-  50%,
-  70% {
-    transform: rotate(4deg);
-  }
-  80% {
-    transform: rotate(-2deg);
-  }
-  90% {
-    transform: rotate(2deg);
-  }
+}
+
+.content_text_sneakersHero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 100px;
 }
 
 .sneakers_hero {
   color: white;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: clamp(22px, 2vw, 26px);
-  position: absolute;
-  top: 45%;
-  left: 20%;
+  animation: bounce-bottom 2s 0.5s both;
+}
+
+@keyframes bounce-bottom {
+  0% {
+    transform: translateY(45px);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(24px);
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateY(12px);
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(6px);
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateY(4px);
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
 }
 
 .content_png {
@@ -395,12 +455,11 @@ header {
 /* ARROW */
 
 .arrow {
+  width: 100%;
   position: absolute;
   bottom: 0;
-  left: calc(100vw - 50%);
+  left: 0;
 
-  height: 70px;
-  width: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -408,7 +467,9 @@ header {
 }
 
 .arrow img {
-  width: 100%;
+  /* width: 100%; */
+  height: 70px;
+  width: 70px;
 
   animation: bounce-top 1.5s 0.5s 1 both;
 }
@@ -501,7 +562,7 @@ header {
   justify-content: center;
   cursor: pointer;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
 
   z-index: 1;
 }
@@ -513,8 +574,8 @@ header {
 }
 
 .filter img:hover {
-  transform: scale(1.3);
-  transition: all 10s linear;
+  transform: scale(1.2);
+  transition: all 5s linear;
 }
 
 .content_text_filter {
@@ -532,7 +593,7 @@ header {
 }
 
 .content_text_filter p {
-  font-size: clamp(16px, 3vw, 22px);
+  font-size: clamp(15px, 3vw, 22px);
   font-weight: 600;
   letter-spacing: 2px;
   color: rgb(39 7 27);
@@ -589,7 +650,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 345px;
+  max-width: 280px;
   position: relative;
 }
 
@@ -603,9 +664,10 @@ button {
   z-index: 2;
 
   display: grid;
-  grid-template: ". img ." 55% "name name name" 10% ". numbers ." auto / 5% 90% auto;
+  grid-template: ". img ." 45% "name name name" 10% ". numbers ." auto / 5% 90% auto;
 
   grid-row-gap: 30px;
+  height: 100%;
 }
 
 .card_product:hover {
@@ -632,6 +694,15 @@ button {
 .content_img_product {
   grid-area: img;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.content_img_product img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .content_img_product img {
@@ -689,26 +760,6 @@ button {
   position: relative;
   display: flex;
   justify-content: center;
-}
-
-.add_to_cart {
-  position: absolute;
-  bottom: -50px;
-  width: auto;
-  height: 80px;
-  background-color: #d9d9d983;
-  border-radius: 15px;
-  padding: 10px;
-  color: white;
-  font-size: clamp(20px, 2vw, 24px);
-  display: flex;
-  align-items: flex-end;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
-.add_to_cart:hover {
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
 }
 
 /* WAVE */
@@ -876,9 +927,38 @@ footer {
 
 /* AUXILIARES */
 
+.add_to_cart {
+  position: absolute;
+  bottom: -50px;
+  width: auto;
+  height: 80px;
+  background-color: #d9d9d983;
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  font-size: clamp(20px, 2vw, 24px);
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.add_to_cart:hover {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
 .close_add {
   position: absolute;
   bottom: -100%;
+  width: auto;
+  height: 80px;
+  background-color: #d9d9d983;
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  font-size: clamp(20px, 2vw, 24px);
+  display: flex;
+  align-items: flex-end;
   transition: all 0.5s ease;
 }
 
@@ -956,24 +1036,28 @@ footer {
     text-align: center;
   }
 
-  .sneakers_hero {
-    top: 100%;
-    left: 35%;
+  .content_text_sneakersHero {
+    position: absolute;
+    top: 70%;
+    padding-left: 0;
+    justify-content: center;
   }
 }
 
 @media (max-width: 930px) {
   .filter_container {
-    padding: 100px 10px 0;
+    padding: 100px 30px 0;
   }
 
   .filter_content {
     flex-direction: column;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 
   .filter {
     height: 100%;
+    overflow: visible;
   }
 }
 
