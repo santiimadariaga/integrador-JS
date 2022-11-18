@@ -4,14 +4,24 @@ const menu = document.getElementById("menu");
 const overlay = document.getElementById("overlay");
 const homeIcon = document.getElementById("home");
 const productsIcon = document.getElementById("productsIcon");
+// botón "AÑADIR AL CARRITO", oculto en la card del producto
 const btnAddToCart = document.getElementById("addToCart");
+// modal de "PRODUCTO AÑADIDO AL CARRITO"
 const addedToCart = document.getElementById("addedToCart");
+// icono del carrito
 const cartIcon = document.getElementById("cart");
+// el contenedor del carrito en sí
 const cartMenu = document.getElementById("cartMenu");
+// botón de cerrar carrito
+const closeCart = document.getElementById("closeCart");
+// contenedor de los filtros (calzado hombre, mujer, niño)
 const filterContent = document.querySelector(".filter_content");
+// Título de la sección de los productos (en defecto "BEST SELLER")
 const nameFilter = document.getElementById("nameFilter");
-const numberButtonContainer = document.querySelector(".numbers_row");
+// contenedor de los productos a renderizar
 const cardsContainer = document.querySelector(".cards_container");
+// contenedor de los botones de talles a elegir
+const numberButtonContainer = document.querySelector(".numbers_row");
 
 let cart = JSON.parse(localStorage.getItem(`cart`)) || [];
 
@@ -19,10 +29,12 @@ const saveToLocalStorage = (cartList) => {
   localStorage.setItem(`cart`, JSON.stringify(cartList));
 };
 
+// Cambiar de color el header al scrollear
 const changeColorHeader = () => {
   headerindex.classList.toggle("change_color", window.scrollY > 0);
 };
 
+// Abrir y cerrar el menu hamburguesa
 const openMenu = () => {
   if (menu.classList.contains("close_menu")) {
     menu.classList.remove("close_menu");
@@ -36,6 +48,7 @@ const openMenu = () => {
   return;
 };
 
+// Abrir y cerrar el carrito
 const openCart = () => {
   if (cartMenu.classList.contains("close_cart")) {
     cartMenu.classList.remove("close_cart");
@@ -49,6 +62,7 @@ const openCart = () => {
   return;
 };
 
+// Cerrar menu y carrito al hacer click fuera de éstos
 const closeOnClick = (e) => {
   menu.classList.remove("open_menu");
   menu.classList.add("close_menu");
@@ -57,6 +71,7 @@ const closeOnClick = (e) => {
   overlay.classList.remove("overlay");
 };
 
+// Al tocar un numero de talle (los 4 que aparecen en las cards), que aparezca el boton de "Añadir al Carrito"
 const buttonAddToCart = (e) => {
   if (e.target.classList.contains("number")) {
     btnAddToCart.classList.remove("close_add");
@@ -65,6 +80,7 @@ const buttonAddToCart = (e) => {
   return;
 };
 
+// Al hacer click en el botón "Añadir al carrito", hacer aparecer modal y eliminarlo luego de 2s
 const addedToCartModal = () => {
   btnAddToCart.classList.remove("add_to_cart");
   btnAddToCart.classList.add("close_add");
@@ -77,6 +93,7 @@ const addedToCartModal = () => {
   }, 2000);
 };
 
+// Retorna el talle seleccionado en los botones
 const sizeSelected = async (e) => {
   if (e.target.classList.contains("number")) {
     let size = e.target.textContent;
@@ -85,12 +102,14 @@ const sizeSelected = async (e) => {
   }
 };
 
-const listenersCards = async () => {
-  numberButtonContainer.addEventListener("click", buttonAddToCart);
-  btnAddToCart.addEventListener("click", addedToCartModal);
-  numberButtonContainer.addEventListener("click", sizeSelected);
-};
+// intento de pasar los últimos tres listeners a una función aparte
+// const listenersCards = () => {
+//   numberButtonContainer.addEventListener("click", buttonAddToCart);
+//   btnAddToCart.addEventListener("click", addedToCartModal);
+//   numberButtonContainer.addEventListener("click", sizeSelected);
+// };
 
+// Card del producto a renderizar
 const renderProduct = (product) => {
   const { id, img, name, price, size1, size2, size3, size4 } = product;
 
@@ -130,14 +149,18 @@ const renderProduct = (product) => {
   `;
 };
 
+// Filtrar de todos los productos, los más populares
 const renderPopularProducts = () => {
   const productsList = productsData.filter((products) => {
     return products.popular;
   });
   cardsContainer.innerHTML = productsList.map(renderProduct).join("");
-  listenersCards();
+
+  // listenersCards();
+  // intento de función auxiliar
 };
 
+// Renderizado de productos filtrados en la seccion dos
 const renderFilteredProducts = (e) => {
   const selectedFilter = e.target.dataset.person;
   console.log({ selectedFilter });
@@ -152,6 +175,7 @@ const renderFilteredProducts = (e) => {
     nameFilter.textContent = "BEST SELLER";
   }
 
+  //cambiar el título h2 según se filtre
   if (selectedFilter === "men") {
     nameFilter.textContent = "MENS";
   } else if (selectedFilter === "kid") {
@@ -174,6 +198,9 @@ const init = () => {
   closeCart.addEventListener("click", closeOnClick);
   cartIcon.addEventListener("click", openCart);
   filterContent.addEventListener("click", renderFilteredProducts);
+  numberButtonContainer.addEventListener("click", buttonAddToCart);
+  btnAddToCart.addEventListener("click", addedToCartModal);
+  numberButtonContainer.addEventListener("click", sizeSelected);
 };
 
 init();
