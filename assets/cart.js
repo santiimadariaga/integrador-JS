@@ -1,57 +1,189 @@
-// sacando los elementos del dom me tiraba null, intente mil cosas pero no salió, por lo tanto se hizo de la manera larga...
+// container de los productos del carrito
+const contentCartProducts = document.querySelector(".content_cart_products");
+// precio total de la compra
+const totalPrice = document.getElementById("totalPrice");
+// botón de finalizar compra
+const btnFinalizeBuy = document.getElementById("btnFinalizeBuy");
 
-// contenedor de los botones de talles a elegir
-// const numberButtonContainer = document.querySelector(".numbers_row");
-// modal de "PRODUCTO AÑADIDO AL CARRITO"
-// const addedToCart = document.getElementById("addedToCart");
-// botón "AÑADIR AL CARRITO", oculto en la card del producto
-// const btnAddToCart = document.getElementById("addToCart");
+let cart = JSON.parse(localStorage.getItem(`cart`)) || [];
 
-// contenedor de los productos a renderizar
-const cardsContainer = document.querySelector(".cards_container");
-
-// Al tocar un numero de talle (los 4 que aparecen en las cards), que aparezca el boton de "Añadir al Carrito"
-const buttonAddToCart = (e) => {
-  if (e.target.classList.contains("number")) {
-    let numberRow = e.target.parentElement;
-    let numberContainer = numberRow.parentElement;
-    let cardProduct = numberContainer.parentElement;
-    let containerCard = cardProduct.parentElement;
-    let contentBtn = containerCard.children[1];
-    let btnAddToCart = contentBtn.children[0];
-
-    btnAddToCart.classList.remove("close_add");
-    btnAddToCart.classList.add("add_to_cart");
-    return;
-  }
-  return;
+const saveToLocalStorage = (cartList) => {
+  localStorage.setItem(`cart`, JSON.stringify(cartList));
 };
 
-// Al hacer click en el botón "Añadir al carrito", hacer aparecer modal y eliminarlo luego de 2s
-const addedToCartModal = (e) => {
-  if (e.target.classList.contains("add_to_cart")) {
-    let btnAddToCart = e.target;
-    btnAddToCart.classList.remove("add_to_cart");
-    btnAddToCart.classList.add("close_add");
+/* AGREGADO DE PRODUCTOS Y MANEJO DEL CARRITO */
 
-    // modal
-    let contentBtn = e.target.parentElement;
-    let containerCard = contentBtn.parentElement;
-    let containerAdded = containerCard.children[2];
-    let btnAdded = containerAdded.children[0];
-    btnAdded.classList.add("added_to_cart");
-    btnAdded.textContent = "PRODUCTO AÑADIDO AL CARRITO!";
-    setTimeout(() => {
-      btnAdded.classList.remove("added_to_cart");
-      btnAdded.textContent = "";
-    }, 2000);
+const renderCartProduct = (cartProduct) => {
+  const { id, name, price, img, quantity } = cartProduct;
+
+  return `
+  <div class="cart_product">
+      <div class="img_cart_product">
+          <img src=${img} alt="">
+      </div>
+      <div class="container_text_add">
+          <div class="content_texts_cart">
+              <h4>${name}</h4>
+              <p class="price_cart">US$ ${price}</p>
+          </div>
+          <div class="content_pls_min">
+              <div class="plsMin down" data-id=${id}>-</div>
+              <div class="quantity">${quantity}</div>
+              <div class="plsMin up" data-id=${id}>+</div>
+          </div>
+      </div>
+  </div>
+  `;
+};
+
+const renderCart = () => {
+  // Si el carrito está vacío
+  if (!cart.length) {
+    contentCartProducts.innerHTML = `<p class="opacity">No hay productos en el carrito.</p>`;
+    return;
   }
-  return;
+  // Renderizamos lo que haya
+  contentCartProducts.innerHTML = cart.map(renderCartProduct).join("");
+};
+
+const getCartTotal = () => {
+  return cart.reduce(
+    (acc, cur) => acc + Number(cur.price) * Number(cur.quantity),
+    0
+  );
+};
+
+const showTotal = () => {
+  totalPrice.textContent = `US$ ${Number(getCartTotal()).toFixed(2)}`;
+};
+
+const disabledBtn = (btn) => {
+  if (!cart.length) {
+    btn.classList.add("disabled");
+    return;
+  }
+  btn.classList.remove("disabled");
+};
+
+/* AÑADIDO DE PRODUCTOS */
+
+const createProductData = (id, name, price, img) => {
+  return { id, name, price, img };
+};
+
+const checkCartState = () => {
+  saveToLocalStorage(cart);
+  renderCart(cart);
+  showTotal(cart);
+  disabledBtn(btnFinalizeBuy);
+};
+
+const isExistingCartProduct = (product) => {
+  return cart.find((item) => item.id === product.id);
+};
+
+const addUnitToProduct = (product) => {
+  cart = cart.map((cartProduct) => {
+    return cartProduct.id === product.id
+      ? { ...cartProduct, quantity: cartProduct.quantity + 1 }
+      : cartProduct;
+  });
+};
+
+const createCartProduct = (product) => {
+  cart = [...cart, { ...product, quantity: 1 }];
+};
+
+const addProduct = (e) => {
+  if (
+    !e.target.classList.contains("add_to_cart") &&
+    !e.target.classList.contains("close_add")
+  ) {
+    return;
+  } else {
+    const { id, name, price, img } = e.target.dataset;
+
+    const product = createProductData(id, name, price, img);
+
+    // El producto existe en el carrito
+    if (isExistingCartProduct(product)) {
+      const producto = cart.find((p) => p.id === product.id);
+      addUnitToProduct(producto);
+    } else {
+      // El producto no existe
+      createCartProduct(product);
+    }
+    checkCartState();
+  }
+};
+
+const removeProductFromCart = (existingProduct) => {
+  cart = cart.filter((product) => product.id !== existingProduct.id);
+  checkCartState();
+};
+
+const substractProductUnit = (existingProduct) => {
+  cart = cart.map((cartProduct) => {
+    return cartProduct.id === existingProduct.id
+      ? { ...cartProduct, quantity: cartProduct.quantity - 1 }
+      : cartProduct;
+  });
+};
+
+const minusBtnEvent = (id) => {
+  const existingCartProduct = cart.find((item) => item.id === id);
+  if (existingCartProduct.quantity === 1) {
+    if (window.confirm("¿Desea eliminar el producto del carrito?")) {
+      removeProductFromCart(existingCartProduct);
+    }
+    return;
+  }
+  substractProductUnit(existingCartProduct);
+};
+
+const plusBtnEvent = (id) => {
+  const existingCartProduct = cart.find((item) => item.id === id);
+
+  addUnitToProduct(existingCartProduct);
+};
+
+const handleQuantity = (e) => {
+  if (e.target.classList.contains("down")) {
+    minusBtnEvent(e.target.dataset.id);
+  } else if (e.target.classList.contains("up")) {
+    plusBtnEvent(e.target.dataset.id);
+  }
+  checkCartState();
+};
+
+const resetCartItems = () => {
+  cart = [];
+  checkCartState();
+};
+
+const completeCartAction = (confirmMsg, successMsg) => {
+  if (!cart.length) return;
+
+  if (window.confirm(confirmMsg)) {
+    resetCartItems();
+    alert(successMsg);
+  }
+};
+
+const completeBuy = (e) => {
+  completeCartAction(
+    "¿Desea finalizar su compra?",
+    "La compra se ha realizado correctamente"
+  );
 };
 
 const initCart = () => {
-  cardsContainer.addEventListener("click", buttonAddToCart);
-  cardsContainer.addEventListener("click", addedToCartModal);
+  document.addEventListener("DOMContentLoaded", renderCart);
+  document.addEventListener("DOMContentLoaded", showTotal);
+  cardsContainer.addEventListener("click", addProduct);
+  contentCartProducts.addEventListener("click", handleQuantity);
+  btnFinalizeBuy.addEventListener("click", completeBuy);
+  disabledBtn(btnFinalizeBuy);
 };
 
 initCart();

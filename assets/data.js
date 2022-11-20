@@ -10,12 +10,6 @@ const productsData = [
     size2: "40",
     size3: "41",
     size4: "42",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 2,
@@ -28,12 +22,6 @@ const productsData = [
     size2: "40",
     size3: "41",
     size4: "42",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 3,
@@ -47,12 +35,6 @@ const productsData = [
     size3: "41",
     size4: "42",
     popular: "true",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 4,
@@ -65,12 +47,6 @@ const productsData = [
     size2: "40",
     size3: "41",
     size4: "42",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 5,
@@ -83,12 +59,6 @@ const productsData = [
     size2: "40",
     size3: "41",
     size4: "42",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 6,
@@ -101,12 +71,6 @@ const productsData = [
     size2: "40",
     size3: "41",
     size4: "42",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 7,
@@ -120,12 +84,6 @@ const productsData = [
     size3: "37",
     size4: "38",
     popular: "true",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 8,
@@ -138,12 +96,6 @@ const productsData = [
     size2: "36",
     size3: "37",
     size4: "38",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 9,
@@ -156,12 +108,6 @@ const productsData = [
     size2: "36",
     size3: "37",
     size4: "38",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 10,
@@ -174,12 +120,6 @@ const productsData = [
     size2: "36",
     size3: "37",
     size4: "38",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 11,
@@ -192,12 +132,6 @@ const productsData = [
     size2: "36",
     size3: "37",
     size4: "38",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 12,
@@ -211,12 +145,6 @@ const productsData = [
     size3: "37",
     size4: "38",
     popular: "true",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 13,
@@ -229,12 +157,6 @@ const productsData = [
     size2: "28",
     size3: "29",
     size4: "30",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 14,
@@ -247,12 +169,6 @@ const productsData = [
     size2: "28",
     size3: "29",
     size4: "30",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 15,
@@ -265,12 +181,6 @@ const productsData = [
     size2: "28",
     size3: "29",
     size4: "30",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 16,
@@ -283,12 +193,6 @@ const productsData = [
     size2: "28",
     size3: "29",
     size4: "30",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 17,
@@ -302,12 +206,6 @@ const productsData = [
     size3: "29",
     size4: "30",
     popular: "true",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
   {
     id: 18,
@@ -321,11 +219,5 @@ const productsData = [
     size3: "29",
     size4: "30",
     popular: "true",
-    sizeSelected: function (e) {
-      if (e.target.classList.contains("number")) {
-        let size = e.target.textContent;
-        return size;
-      }
-    },
   },
 ];

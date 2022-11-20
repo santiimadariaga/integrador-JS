@@ -14,12 +14,10 @@ const closeCart = document.getElementById("closeCart");
 const filterContent = document.querySelector(".filter_content");
 // Título de la sección de los productos (en defecto "BEST SELLER")
 const nameFilter = document.getElementById("nameFilter");
-
-let cart = JSON.parse(localStorage.getItem(`cart`)) || [];
-
-const saveToLocalStorage = (cartList) => {
-  localStorage.setItem(`cart`, JSON.stringify(cartList));
-};
+// selector del cart
+const cartSelector = document.getElementById("cart");
+// contenedor de los productos a renderizar
+const cardsContainer = document.querySelector(".cards_container");
 
 // Cambiar de color el header al scrollear
 const changeColorHeader = () => {
@@ -29,6 +27,8 @@ const changeColorHeader = () => {
 // Abrir y cerrar el menu hamburguesa
 const openMenu = () => {
   if (menu.classList.contains("close_menu")) {
+    cartMenu.classList.remove("open_cart");
+    cartMenu.classList.add("close_cart");
     menu.classList.remove("close_menu");
     menu.classList.add("open_menu");
     overlay.classList.add("overlay");
@@ -43,6 +43,8 @@ const openMenu = () => {
 // Abrir y cerrar el carrito
 const openCart = () => {
   if (cartMenu.classList.contains("close_cart")) {
+    menu.classList.remove("open_menu");
+    menu.classList.add("close_menu");
     cartMenu.classList.remove("close_cart");
     cartMenu.classList.add("open_cart");
     overlay.classList.add("overlay");
@@ -63,19 +65,47 @@ const closeOnClick = () => {
   overlay.classList.remove("overlay");
 };
 
-// Retorna el talle seleccionado en los botones
+// Al tocar un numero de talle (los 4 que aparecen en las cards), que aparezca el boton de "Añadir al Carrito"
+const buttonAddToCart = (e) => {
+  if (e.target.classList.contains("number")) {
+    let numberRow = e.target.parentElement;
+    let numberContainer = numberRow.parentElement;
+    let cardProduct = numberContainer.parentElement;
+    let containerCard = cardProduct.parentElement;
+    let contentBtn = containerCard.children[1];
+    let btnAddToCart = contentBtn.children[0];
 
-// intento de pasar los últimos tres listeners a una función aparte
-// const listenersCards = () => {
-//   numberButtonContainer.addEventListener("click", buttonAddToCart);
-//   btnAddToCart.addEventListener("click", addedToCartModal);
-//   numberButtonContainer.addEventListener("click", sizeSelected);
-// };
+    btnAddToCart.classList.remove("close_add");
+    btnAddToCart.classList.add("add_to_cart");
+  }
+  return;
+};
+
+// Al hacer click en el botón "Añadir al carrito", hacer aparecer modal y eliminarlo luego de 2s
+const addedToCartModal = (e) => {
+  if (e.target.classList.contains("add_to_cart")) {
+    let btnAddToCart = e.target;
+    btnAddToCart.classList.remove("add_to_cart");
+    btnAddToCart.classList.add("close_add");
+
+    // modal
+    let contentBtn = e.target.parentElement;
+    let containerCard = contentBtn.parentElement;
+    let containerAdded = containerCard.children[2];
+    let btnAdded = containerAdded.children[0];
+    btnAdded.classList.add("added_to_cart");
+    btnAdded.textContent = "Producto añadido al carrito!";
+    setTimeout(() => {
+      btnAdded.classList.remove("added_to_cart");
+      btnAdded.textContent = "";
+    }, 2000);
+  }
+  return;
+};
 
 // Card del producto a renderizar
 const renderProduct = (product) => {
-  const { id, img, name, price, sizeSelected, size1, size2, size3, size4 } =
-    product;
+  const { id, img, name, price, size1, size2, size3, size4 } = product;
 
   return `
     <div class="container_card_product">
@@ -101,8 +131,7 @@ const renderProduct = (product) => {
           data-id="${id}"
           data-img="${img}"
           data-name="${name}"
-          data-price${price}
-          data-size="${sizeSelected}"
+          data-price="${price}"
           >AÑADIR AL CARRITO</button>
       </div>
 
@@ -119,15 +148,11 @@ const renderPopularProducts = () => {
     return products.popular;
   });
   cardsContainer.innerHTML = productsList.map(renderProduct).join("");
-
-  // listenersCards();
-  // intento de función auxiliar
 };
 
 // Renderizado de productos filtrados en la seccion dos
 const renderFilteredProducts = (e) => {
   const selectedFilter = e.target.dataset.person;
-  console.log({ selectedFilter });
 
   if (selectedFilter) {
     const productsList = productsData.filter((products) => {
@@ -162,6 +187,8 @@ const init = () => {
   closeCart.addEventListener("click", closeOnClick);
   cartIcon.addEventListener("click", openCart);
   filterContent.addEventListener("click", renderFilteredProducts);
+  cardsContainer.addEventListener("click", buttonAddToCart);
+  cardsContainer.addEventListener("click", addedToCartModal);
 };
 
 init();
